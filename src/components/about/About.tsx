@@ -75,11 +75,11 @@ const About = () => {
               maxPolarAngle={Math.PI * 0.35}
             />
           </Canvas>
-          <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-10">
-            {labelsData.map((label) => (
-              <LabelsHtml id={label.id} label={label} key={label.id} />
-            ))}
-          </div>
+        </div>
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-10 pointer-events-none">
+          {labelsData.map((label) => (
+            <LabelsHtml id={label.id} label={label} key={label.id} />
+          ))}
         </div>
       </div>
     </div>
