@@ -1,31 +1,43 @@
-import { Card } from './Card'
+import { useIsMobile } from "@hooks/useIsMobile";
+import { Card } from "./Card";
+import type { ExperienceType } from "@data/experience";
+
 type TimelineLogoProps = {
-  date: {
-    dateString: string
-    dateObj: Date
-  }
-  index: number
-}
-export const TimelineLogo = ({ date, index }: TimelineLogoProps) => {
+  index: number;
+  experience: ExperienceType;
+};
+
+export const TimelineLogo = ({ index, experience }: TimelineLogoProps) => {
+  const isMobile = useIsMobile();
+  const isEven = index % 2 === 0;
+  const datePosition =  isMobile 
+    ? "right-0 flex justify-start"
+    :isEven
+    ? "right-0 flex justify-start"
+    : "left-0 flex justify-end";
+
+  const year = experience.period.start.split(" ")[1];
 
   return (
-    <div
-      className={`relative 2xl:w-3/5 xl:w-3/4 lg:w-[85%] md:w-[90%] sm:w-full max-sm:w-full 
-             p-2 flex flex-row justify-center items-center 
-            max-sm:justify-end max-sm:h-[300px] 
-            sm:h-[500px]`}>
-      <Card index={index} />
-      <div className='bg-slate-600 rounded-full p-2 max-sm:w-14 max-sm:h-14 max-sm:absolute max-sm:top-[50px]'>
+    <div className="relative w-full min-h-100 lg:w-250 flex-1 flex  flex-row justify-center items-center">
+      <Card index={index} experience={experience} />
+
+      <div className="absolute bg-slate-600 max-lg:right-13 max-sm:right-0.5  top-25 rounded-full max-w-16 max-h-16 max-sm:max-w-10 max-sm:max-h-10 max-sm:top-28">
         <img
-          src={"/logo/logo_portfolio.svg"}
-          alt='TimelineLogo'
+          src="/logo/logo_portfolio.svg"
+          alt="Timeline logo"
           width={60}
           height={60}
           loading="lazy"
         />
       </div>
-      <div className={`absolute  w-2/5 ${index % 2 === 0 ? 'right-0 flex justify-start' : 'left-0 flex justify-end'} max-sm:invisible max-sm:absolute max-sm:left-0 sm:visible`}><p className='text-white font-bold text-3xl'>{date.dateString}</p></div>
-    </div>
-  )
-}
 
+      {/* Fecha — solo visible en desktop */}
+      <div
+        className={`w-2/5 top-28 absolute  hidden sm:flex ${datePosition} `}
+      >
+        <p className="text-white font-bold text-3xl">{year}</p>
+      </div>
+    </div>
+  );
+};
