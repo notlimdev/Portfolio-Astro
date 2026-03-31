@@ -1,5 +1,4 @@
-// src/hooks/useNavigationPin.ts
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
@@ -10,6 +9,20 @@ export function useNavigationPin() {
   const navsection = useRef<HTMLDivElement>(null);
   const sectionsDivRef = useDivRefsStore((state) => state.divRefs);
   const setTimelineNav = useTimelineNavigation((state) => state.setTimeline);
+
+  // Manejo de resize: habilita/deshabilita el pin según breakpoint
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth <= 640;
+      const trigger = ScrollTrigger.getById("navigation");
+      isMobile ? trigger?.disable() : trigger?.enable();
+      if (!isMobile) trigger?.refresh();
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useGSAP(
     () => {
