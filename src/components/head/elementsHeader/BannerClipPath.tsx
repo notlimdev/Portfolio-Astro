@@ -4,12 +4,12 @@ import { clipPaths } from "@data/clip-paths";
 const MOBILE_BREAKPOINT = 768;
 
 function useClipPath() {
-  const [clipPath, setClipPath] = useState(clipPaths.desktop);
+  const [clipPath, setClipPath] = useState<string | null>(null);
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout>;
 
-    const handleRisize = () => {
+    const handleResize = () => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
         setClipPath(
@@ -20,20 +20,22 @@ function useClipPath() {
       }, 150);
     };
 
-    //Ejecutar al montar
-    handleRisize();
-    window.addEventListener("resize", handleRisize);
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
     return () => {
       clearTimeout(timeoutId);
-      window.removeEventListener("resize", handleRisize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   return clipPath;
 }
+
 export default function BannerClipPath() {
   const clipPath = useClipPath();
+
+  if (!clipPath) return null;
 
   return (
     <svg className="svg">
