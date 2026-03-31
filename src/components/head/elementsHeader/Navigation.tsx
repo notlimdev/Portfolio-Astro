@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { navPages } from "@data/navigation";
 import { useScrollToSection } from "@hooks/useScrollToSection";
 import { useNavigationPin } from "@hooks/useNavigationPin";
@@ -11,22 +9,8 @@ type NavigationProps = {
 };
 
 const Navigation = ({ isOpen, onClose }: NavigationProps) => {
-  // ✅ Solo llama hooks, no tiene lógica adentro
   const navsection = useNavigationPin();
   const scrollToSection = useScrollToSection();
-
-  useEffect(() => {
-    const handleResize = () => {
-      const isMobile = window.innerWidth <= 640;
-      const trigger = ScrollTrigger.getById("navigation");
-      isMobile ? trigger?.disable() : trigger?.enable();
-      if (!isMobile) trigger?.refresh();
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const handleNavClick = (name: string) => {
     scrollToSection(name);
@@ -50,7 +34,6 @@ const Navigation = ({ isOpen, onClose }: NavigationProps) => {
         <XMarkIcon className="w-8 h-8" onClick={onClose} />
       </div>
 
-      {/* Links */}
       {navPages.map((page) => (
         <ul
           key={page.id}
