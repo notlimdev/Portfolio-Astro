@@ -13,63 +13,55 @@ export type ExperienceType = {
 export const experienceData: ExperienceType[] = [
   {
     id: 1,
-    company: "TechSolutions SAC",
-    role: "Frontend Developer",
+    company: "Pacífico IT Group",
+    role: "Analista de Sistemas",
     period: {
-      start: "Febrero 2022",
-      end: "Julio 2022",
+      start: "Septiembre 2024",
+      end: "Febrero 2025",
     },
     description:
-      "Desarrollo de interfaces de usuario con React y TypeScript. Implementación de diseños responsive y optimización de rendimiento en aplicaciones web.",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Git"],
+      "Levantamiento y análisis de requerimientos funcionales y no funcionales en coordinación con stakeholders, modelado de procesos de negocio mediante UML y documentación técnica para el desarrollo de soluciones. Gestión y consulta de bases de datos en SQL Server para validación de información y soporte en la toma de decisiones.",
+    technologies: ["UML", "SQL Server", "Jira", "Git"],
   },
   {
     id: 2,
-    company: "DataSoft Peru",
-    role: "Fullstack Developer",
+    company: "Softtek",
+    role: "Frontend Developer",
     period: {
-      start: "Agosto 2022",
-      end: "Diciembre 2022",
+      start: "Marzo 2024",
+      end: "Agosto 2024",
     },
     description:
-      "Desarrollo de APIs REST con Laravel y PostgreSQL. Construcción de dashboards interactivos con React para visualización de datos empresariales.",
-    technologies: ["Laravel", "React", "PostgreSQL", "Docker"],
+      "Desarrollo de interfaces con React y TypeScript, integración de APIs REST y creación de componentes reutilizables optimizados para UX.",
+    technologies: [
+      "React",
+      "Next.js",
+      "PostgreSQL",
+      "Figma",
+      "TailwindCSS",
+      "Zustand",
+      "Axios",
+      "Git",
+    ],
   },
   {
     id: 3,
-    company: "InnovateTech",
+    company: "Rodriguez SAC",
     role: "Fullstack Developer",
     period: {
-      start: "Enero 2023",
+      start: "Abril 2023",
       end: "Diciembre 2023",
     },
     description:
-      "Arquitectura y desarrollo de sistemas web complejos. Liderazgo técnico en implementación de microservicios y automatización de procesos internos.",
-    technologies: ["Next.js", "Node.js", "MongoDB", "Docker", "AWS"],
+      "Desarrollo fullstack con Next.js y Node.js, creación de APIs REST y despliegue en AWS con Docker.",
+    technologies: [
+      "Next.js",
+      "Node.js",
+      "TypeScript",
+      "Express",
+      "MongoDB",
+      "Docker",
+      "AWS",
+    ],
   },
-  {
-    id: 4,
-    company: "CreativeApps",
-    role: "Senior Frontend Developer",
-    period: {
-      start: "Enero 2024",
-      end: "Presente",
-    },
-    description:
-      "Desarrollo de aplicaciones web con animaciones avanzadas y experiencias 3D interactivas. Optimización de rendimiento y arquitectura de componentes escalables.",
-    technologies: ["React", "Three.js", "GSAP", "TypeScript", "Astro"],
-  },
-  {
-    id: 5,
-    company: "CreativeApps",
-    role: "Senior Frontend Developer",
-    period: {
-      start: "Enero 2025",
-      end: "Presente",
-    },
-    description:
-      "Desarrollo de aplicaciones web con animaciones avanzadas y experiencias 3D interactivas. Optimización de rendimiento y arquitectura de componentes escalables.",
-    technologies: ["React", "Three.js", "GSAP", "TypeScript", "Astro"],
-  },
-
 ];
