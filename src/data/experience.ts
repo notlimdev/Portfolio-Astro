@@ -20,7 +20,7 @@ export const experienceData: ExperienceType[] = [
       end: "Febrero 2025",
     },
     description:
-      "Levantamiento y análisis de requerimientos funcionales y no funcionales en coordinación con stakeholders, modelado de procesos de negocio mediante UML y documentación técnica para el desarrollo de soluciones. Gestión y consulta de bases de datos en SQL Server para validación de información y soporte en la toma de decisiones.",
+      "Análisis de requerimientos y modelado de procesos de negocio (UML), con gestión de datos en SQL Server para soporte en decisiones.",
     technologies: ["UML", "SQL Server", "Jira", "Git"],
   },
   {
