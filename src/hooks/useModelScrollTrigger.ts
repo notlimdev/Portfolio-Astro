@@ -11,14 +11,11 @@ export function useModelScrollTrigger() {
   const aboutRef = sectionsDivRef["About-Me"];
   const divrefheight = sectionsDivRef["divrefheight"];
 
-  const refreshRelatedTriggers = () => {
-    ScrollTrigger.getById("navigation")?.refresh();
-    ScrollTrigger.getById("horizontalsctoll")?.refresh();
-  };
-
   useGSAP(
     () => {
       if (!aboutRef?.current || !divrefheight?.current) return;
+
+      ScrollTrigger.getById("model3d")?.kill();
 
       const timeline = gsap.timeline({
         scrollTrigger: {
@@ -30,13 +27,15 @@ export function useModelScrollTrigger() {
           pin: aboutRef.current,
           anticipatePin: 2,
           id: "model3d",
+          refreshPriority: 10,
+          invalidateOnRefresh: true,
         },
-        onStart: refreshRelatedTriggers,
-        onComplete: refreshRelatedTriggers,
       });
 
       setTimeline(timeline);
-      return timeline;
+      return () => {
+        timeline.scrollTrigger?.kill();
+      };
     },
     { dependencies: [aboutRef, divrefheight] },
   );
