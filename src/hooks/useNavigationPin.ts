@@ -10,7 +10,6 @@ export function useNavigationPin() {
   const sectionsDivRef = useDivRefsStore((state) => state.divRefs);
   const setTimelineNav = useTimelineNavigation((state) => state.setTimeline);
 
-  // Manejo de resize: habilita/deshabilita el pin según breakpoint
   useEffect(() => {
     const handleResize = () => {
       const isMobile = window.innerWidth <= 640;
@@ -28,6 +27,8 @@ export function useNavigationPin() {
     () => {
       if (!navsection.current || !sectionsDivRef["Projects"]?.current) return;
 
+      ScrollTrigger.getById("navigation")?.kill();
+
       const projectRefElement = sectionsDivRef["Projects"].current!;
       const timeline = gsap.timeline();
 
@@ -43,6 +44,8 @@ export function useNavigationPin() {
           scrub: 3,
           toggleClass: "stylenav",
           id: "navigation",
+          refreshPriority: 5,
+          invalidateOnRefresh: true,
           onEnter: () => {
             navsection.current?.classList.add(
               "bg-white/30",
