@@ -6,6 +6,7 @@ import Lenis from "lenis";
 import { useDivRefsStore } from "@store/store-sections";
 import { useTimelineRoot } from "@store/store-timeline-root";
 import { useTimelineStore } from "@store/store-timeline-scrollTrigger";
+import { useLenisStore } from "@store/store-lenis";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -18,12 +19,16 @@ export const SmoothProvider = ({ children }: SmoothProviderProps) => {
   const sectionsDivRef = useDivRefsStore((state) => state.divRefs);
   const setTimelineRoot = useTimelineRoot((state) => state.setTimeline);
   const timeabout = useTimelineStore((state) => state.timelineAboutSection);
+  const setLenis = useLenisStore((state) => state.setLenis);
   const triggerModel3d = ScrollTrigger.getById("model3d");
 
   useEffect(() => {
     const lenis = new Lenis({
       duration: 3,
     });
+
+    setLenis(lenis);
+
     lenis.on("scroll", ScrollTrigger.update);
 
     gsap.ticker.add((time) => {
