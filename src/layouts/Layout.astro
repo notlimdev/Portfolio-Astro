@@ -1,27 +1,105 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
+}
+
+const siteURL = Astro.site ?? new URL(Astro.url.origin);
+
+const {
+  title = "notlimdev · Milton Vergara — Software Engineer",
+  description = "Apasionado por el software bien hecho. Del análisis de requerimientos al producto final: diseño, frontend, backend, infra y datos. Ingeniería con criterio. — notlimdev",
+  image = "/og-image.png",
+  canonicalURL = Astro.url.href,
+} = Astro.props;
+
+const personSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Milton Vergara García",
+  alternateName: "notlimdev",
+  url: siteURL.href,
+  sameAs: [
+    "https://github.com/notlimdev",
+    "https://www.linkedin.com/in/notlimdev",
+    "https://www.instagram.com/notlimdev",
+    "https://www.tiktok.com/@notlimdev",
+  ],
+  jobTitle: "Software Engineer",
+  knowsAbout: [
+    "Análisis de requerimientos",
+    "Ingeniería de software",
+    "React", "Next.js", "TypeScript", "Node.js", "Laravel",
+    "Python", "Linux", "Docker", "AWS",
+    "MongoDB", "PostgreSQL", "SQL Server",
+    "Dashboards", "Redes y telecomunicaciones",
+    "Animaciones web", "GSAP", "Three.js", "Figma",
+  ],
+});
+---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-      <slot />
-	</body>
+<html lang="es">
+  <head>
+    <!-- Essentials -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO primario -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Milton Vergara García" />
+    <meta
+      name="keywords"
+      content="notlimdev, Milton Vergara García, Software Engineer, análisis de requerimientos, sistemas legacy, React, TypeScript, Node.js, Docker, AWS, Python, Linux, dashboards, bases de datos, animaciones web, GSAP, Three.js, producto digital, ingeniería de software"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, siteURL)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="notlimdev — Milton Vergara García, Software Engineer" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="notlimdev" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@notlimdev" />
+    <meta name="twitter:creator" content="@notlimdev" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, siteURL)} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- JSON-LD: Person Schema -->
+    <script type="application/ld+json" set:html={personSchema} />
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
     color: #ededed;
     background: #0e1115;
-	}
-  body {
-    overflow-x: auto; /* No usar hidden aquí */
   }
-  </style>
+  body {
+    overflow-x: auto;
+  }
+</style>
