@@ -2,7 +2,7 @@ export const personalInfo = {
   name: "Milton Vergara",
   roleName: "Milton Vergara",
   shortBio:
-    "Desarrollador con sólida experiencia de más de 4 años, implementando y automatizando sistemas complejos.",
+    "Apasionado por el software bien hecho. Del análisis de requerimientos al producto final: diseño, frontend, backend, infra y datos. Ingeniería con criterio.",
   longBio:
-    "Desarrollador con más de 4 años de experiencia construyendo aplicaciones web modernas, especializándome en interfaces interactivas y sistemas escalables.",
+    "Apasionado por construir software que realmente funciona. Desde el levantamiento de requerimientos y análisis hasta  el producto final: diseño, frontend, backend, infra y datos. Buenas prácticas de ingeniería en cada línea de código.",
 };
