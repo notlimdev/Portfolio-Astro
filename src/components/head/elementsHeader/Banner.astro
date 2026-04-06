@@ -3,7 +3,7 @@
 import BannerClipPath from './BannerClipPath'
 import Presentation from './Presentation'
 import CTAButton from './CTAButton'
-import ImgProfile from "../../../assets/image_developer.webp"
+import ImgProfile from "../../../assets/milton-vergara-notlimdev.png"
 import { Image } from 'astro:assets'
 ---
 
@@ -27,13 +27,13 @@ import { Image } from 'astro:assets'
     {/* Bloques de color del fondo */}
     <div class="absolute top-0 xl:top-40 right-10
                 bg-green-600 w-5/12 h-1/3 rounded
-                2xl:h-3/5">
+                2xl:h-3/12">
     </div>
     <div class="absolute top-20 left-0 lg:top-40 xl:top-40
                 bg-cyan-600 w-1/3 h-1/4 rounded">
     </div>
     <div class="absolute bottom-0 left-0
-                bg-purple-600 w-2/3 h-1/3 rounded">
+                bg-purple-600 w-2/3 h-1/3 rounded 2xl:w-4/5">
     </div>
   </div>
 
@@ -43,8 +43,10 @@ import { Image } from 'astro:assets'
 
     {/* Imagen de perfil */}
     <div class="absolute rounded-3xl shadow-2xl
+                border-r-8 border-indigo-300
                 w-100 h-100 right-20 top-48
-                max-sm:w-28 max-sm:h-28 max-sm:top-24 max-sm:right-5
+                max-sm:w-16 max-sm:h-16 max-sm:top-16 max-sm:right-8
+                max-sm:border-r-2
                 sm:w-40 sm:h-40 sm:top-28 sm:right-8
                 md:w-56 md:h-56 md:top-40
                 lg:w-72 lg:h-72 lg:top-52
@@ -53,7 +55,7 @@ import { Image } from 'astro:assets'
       <Image
         src={ImgProfile}
         alt="Foto de perfil Milton Vergara"
-        class="bg-cover w-full h-full mix-blend-overlay rounded-full"
+        class="bg-cover w-full h-full rounded-full drop-shadow-2xl shadow-lg shadow-indigo-300 drop-shadow-indigo-400"
         width={400}
         height={400}
         loading="eager"
