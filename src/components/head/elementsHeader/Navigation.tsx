@@ -24,8 +24,8 @@ const Navigation = ({ isOpen, onClose }: NavigationProps) => {
                   flex flex-row justify-start items-center
                   w-4/6 relative
                   sm:gap-2 sm:left-0 sm:w-full sm:justify-center sm:uppercase
-                  lg:gap-4 lg:left-8 lg:justify-center
-                  2xl:justify-start
+                  lg:gap-4 lg:justify-center
+                  2xl:justify-start 2xl:p-2
                   max-sm:gap-4
                   ${isOpen ? "navigationactive" : ""}`}
     >
