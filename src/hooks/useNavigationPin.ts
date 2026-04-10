@@ -31,11 +31,13 @@ export function useNavigationPin() {
 
       const projectRefElement = sectionsDivRef["Projects"].current!;
       const timeline = gsap.timeline();
+      const sectionsporfolio = navsection.current.querySelectorAll("ul");
+      const btnsections = navsection.current.querySelectorAll("button");
 
       timeline.to(navsection.current, {
         scrollTrigger: {
           trigger: navsection.current,
-          start: "top top",
+          start: "top 10px",
           endTrigger: projectRefElement,
           end: "bottom bottom",
           pinSpacing: false,
@@ -47,17 +49,27 @@ export function useNavigationPin() {
           refreshPriority: 5,
           invalidateOnRefresh: true,
           onEnter: () => {
+            navsection.current?.classList.remove("2xl:justify-start");
+            sectionsporfolio.forEach((btn) => {
+              btn.classList.remove("2xl:left-20");
+            });
             navsection.current?.classList.add(
               "bg-white/30",
               "backdrop-blur-sm",
               "rounded-3xl",
+              "2xl:justify-center",
             );
           },
           onLeaveBack: () => {
             navsection.current?.classList.remove(
               "bg-white/30",
               "backdrop-blur-sm",
+              "2xl:justify-center",
             );
+            navsection.current?.classList.add("2xl:justify-start");
+            sectionsporfolio.forEach((btn) => {
+              btn.classList.add("2xl:left-20");
+            });
           },
         },
         onStart: () => ScrollTrigger.getById("horizontalsctoll")?.refresh(),
