@@ -17,29 +17,55 @@ export default function Projects() {
 
   useGSAP(
     () => {
-      const sections = gsap.utils.toArray(".panel");
-      if (sections.length === 0 || !projectsSectionRef.current) return;
+      if (
+        !projectsSectionRef.current ||
+        !projectsContainerRef.current ||
+        !panelsTrackRef.current
+      ) {
+        return;
+      }
 
-      const projectsTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: projectsSectionRef.current,
-          start: `top top`,
-          scrub: true,
-          pin: true,
-          anticipatePin: 1,
-          id: "projects-horizontal-scroll",
-          refreshPriority: 1,
-          invalidateOnRefresh: true,
-        },
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 1024px)", () => {
+        const scrollDistance =
+          panelsTrackRef.current!.scrollWidth -
+          projectsContainerRef.current!.offsetWidth;
+
+        if (scrollDistance <= 0) return;
+
+        const projectsTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: projectsSectionRef.current,
+            start: "top top",
+            end: () => `+=${scrollDistance}`,
+            scrub: true,
+            pin: true,
+            anticipatePin: 1,
+            id: "projects-horizontal-scroll",
+            refreshPriority: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        projectsTimeline.to(panelsTrackRef.current, {
+          x: -scrollDistance,
+          ease: "none",
+          force3D: true,
+        });
+
+        setProjectsTimeline(projectsTimeline);
       });
 
-      projectsTimeline.to(sections, {
-        xPercent: -(100 * (sections.length - 1)),
-        ease: "none",
-        force3D: true,
+      mm.add("(max-width: 1023px)", () => {
+        gsap.set(panelsTrackRef.current, {
+          clearProps: "transform",
+        });
       });
 
-      setProjectsTimeline(projectsTimeline);
+      return () => {
+        mm.revert();
+      };
     },
     { dependencies: [setProjectsTimeline], scope: projectsContainerRef },
   );
@@ -52,23 +78,23 @@ export default function Projects() {
 
   return (
     <div
-      className="flex flex-col justify-around items-center w-full min-h-screen hidden_overflow-project"
+      className="flex w-full min-h-screen flex-col items-center justify-start gap-8 overflow-hidden px-4 py-12 sm:px-6 lg:gap-10 lg:px-10 lg:py-16"
       ref={projectsSectionRef}
     >
-      <div className="w-full flex flex-row justify-center items-center">
-        <h1
-          className="w-[90%] text-white text-4xl 
-          font-bold text-center border-b-2 border-t-2 border-dashed"
-        >
+      <div className="flex w-full items-center justify-center">
+        <h1 className="w-full max-w-350 border-y-2 border-dashed border-white/20 py-4 text-center text-3xl font-bold text-white sm:text-4xl">
           Projects
         </h1>
       </div>
       <div
         id="Projects"
-        className="h-[70%] w-[90%] flex flex-col justify-center"
+        className="flex w-full max-w-350 flex-col justify-center"
         ref={projectsContainerRef}
       >
-        <section ref={panelsTrackRef} className=" flex gap-2">
+        <section
+          ref={panelsTrackRef}
+          className="flex flex-col gap-5 lg:flex-row lg:gap-6"
+        >
           {projectsData.map((project) => (
             <Card key={project.id} project={project} />
           ))}
