@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import Card from "./elementsProjects/Card";
 import { useDivRefsStore } from "@store/store-sections";
 import { useTimelineProjectStore } from "@store/store-timeline-projects";
+import { projectsData } from "@data/projects";
 
 export default function Projects() {
   const panelsTrackRef = useRef<HTMLDivElement>(null);
@@ -68,11 +69,9 @@ export default function Projects() {
         ref={projectsContainerRef}
       >
         <section ref={panelsTrackRef} className=" flex gap-2">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {projectsData.map((project) => (
+            <Card key={project.id} project={project} />
+          ))}
         </section>
       </div>
     </div>
