@@ -6,7 +6,14 @@ type CardProps = {
 };
 
 const Card = ({ project }: CardProps) => {
-  const primaryLink = project.links[0];
+  const primaryLink =
+    project.links?.[0] ??
+    (project.liveUrl
+      ? {
+          label: "Go To Project",
+          href: project.liveUrl,
+        }
+      : undefined);
 
   return (
     <div
@@ -33,7 +40,7 @@ const Card = ({ project }: CardProps) => {
                 hover:backdrop-blur-none hover:transition"
           ></div>
         </div>
-        <p>{project.summary}</p>
+        <p>{project.excerpt}</p>
         <ul className="space-y-5">
           <h2 className="text-sm font-bold uppercase">technologies: </h2>
           <div className="flex flex-wrap gap-5">
