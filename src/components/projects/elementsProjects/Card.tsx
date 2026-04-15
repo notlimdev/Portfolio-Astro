@@ -28,9 +28,7 @@ const Card = ({ project }: CardProps) => {
     "Project system focused on quality, structure and execution.";
 
   return (
-    <div
-      className="panel group w-[620px] max-w-[92vw] shrink-0 overflow-hidden rounded-[28px] border border-white/10 bg-[#121212] text-white shadow-[0_24px_80px_rgba(0,0,0,0.28)] transition-transform duration-300 hover:-translate-y-1 sm:w-[560px] lg:w-[620px]"
-    >
+    <div className="panel group w-155 max-w-[92vw] shrink-0 overflow-hidden rounded-[28px] border border-white/10 bg-[#121212] text-white shadow-[0_24px_80px_rgba(0,0,0,0.28)] transition-transform duration-300 hover:-translate-y-1 sm:w-140 lg:w-155">
       <div className="flex h-full flex-col gap-5 p-5 sm:gap-6 sm:p-6">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
@@ -52,9 +50,7 @@ const Card = ({ project }: CardProps) => {
           </h2>
         </div>
 
-        <div
-          className="relative flex min-h-[190px] w-full flex-col justify-between overflow-hidden rounded-[22px] border border-white/8 bg-linear-to-br from-[#171717] via-[#1c1c1c] to-[#121212] px-4 py-4 sm:min-h-[200px] sm:px-5 sm:py-5"
-        >
+        <div className="relative flex min-h-47.5 w-full flex-col justify-between overflow-hidden rounded-[22px] border border-white/8 bg-linear-to-br from-[#171717] via-[#1c1c1c] to-[#121212] px-4 py-4 sm:min-h-50 sm:px-5 sm:py-5">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-orange-500/24 via-orange-500/8 to-transparent"
