@@ -22,14 +22,26 @@ const Card = ({ project }: CardProps) => {
     archived: "Archived",
   };
 
-  const previewHeadline =
+  const previewLabel = project.category
+    .split("/")
+    .map((item) => item.trim())
+    .slice(0, 3)
+    .join(" + ")
+    .toUpperCase();
+
+  const previewHeadlineRaw =
     project.highlights?.[0] ??
     project.description ??
     "Project system focused on quality, structure and execution.";
 
+  const previewHeadline =
+    previewHeadlineRaw.length > 84
+      ? `${previewHeadlineRaw.slice(0, 81).trim()}...`
+      : previewHeadlineRaw;
+
   return (
-    <div className="panel group w-155 max-w-[92vw] shrink-0 overflow-hidden rounded-[28px] border border-white/10 bg-[#121212] text-white shadow-[0_24px_80px_rgba(0,0,0,0.28)] transition-transform duration-300 hover:-translate-y-1 sm:w-140 lg:w-155">
-      <div className="flex h-full flex-col gap-5 p-5 sm:gap-6 sm:p-6">
+    <div className="panel group w-full max-w-[92vw] shrink-0 overflow-hidden rounded-[28px] border border-white/10 bg-[#121212] text-white shadow-[0_24px_80px_rgba(0,0,0,0.28)] sm:w-140 lg:w-155">
+      <div className="flex h-full min-h-140 flex-col gap-5 p-5 sm:min-h-150 sm:gap-6 sm:p-6">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <p className="font-mono text-[11px] font-medium uppercase tracking-[0.24em] text-white/45 sm:text-xs">
@@ -45,7 +57,7 @@ const Card = ({ project }: CardProps) => {
             </div>
           </div>
 
-          <h2 className="text-3xl font-bold leading-none text-white sm:text-4xl">
+          <h2 className="max-w-[12ch] text-3xl font-bold leading-none text-white sm:text-4xl">
             {project.title}
           </h2>
         </div>
@@ -59,21 +71,21 @@ const Card = ({ project }: CardProps) => {
             <span className="font-mono text-[11px] font-medium text-white/65 sm:text-xs">
               {project.slug}
             </span>
-            <span className="w-fit rounded-full border border-white/12 bg-white/6 px-3 py-1 font-mono text-[11px] font-medium text-white/85">
+            <span className="w-fit self-start rounded-full border border-white/12 bg-white/6 px-3 py-1 font-mono text-[11px] font-medium text-white/85">
               {project.role}
             </span>
           </div>
           <div className="relative z-10 flex flex-col gap-3">
             <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-orange-300">
-              Scene + Motion + Product
+              {previewLabel}
             </span>
-            <p className="max-w-[24ch] text-2xl font-semibold leading-[1.02] text-white sm:text-[2rem]">
+            <p className="max-w-[23ch] text-2xl font-semibold leading-[1.02] text-white sm:max-w-[24ch] sm:text-[2rem]">
               {previewHeadline}
             </p>
           </div>
         </div>
 
-        <p className="text-sm leading-7 text-white/68 sm:text-[15px]">
+        <p className="max-w-[58ch] text-sm leading-7 text-white/68 sm:text-[15px]">
           {project.excerpt}
         </p>
 
@@ -98,7 +110,7 @@ const Card = ({ project }: CardProps) => {
           </div>
         </div>
 
-        <div className="mt-auto flex flex-col gap-4 pt-1 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-auto flex flex-col gap-4 border-t border-white/8 pt-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-mono text-[11px] font-medium text-white/42 sm:text-xs">
             Selected project / repository available
           </p>
@@ -110,11 +122,7 @@ const Card = ({ project }: CardProps) => {
               className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#ff8400] px-4 py-3 font-mono text-xs font-semibold text-black transition-all duration-300 hover:bg-[#ff9b2f] sm:w-auto"
             >
               {primaryLink.label}
-              <ArrowTopRightOnSquareIcon
-                width={18}
-                height={18}
-                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
+              <ArrowTopRightOnSquareIcon width={18} height={18} className="" />
             </a>
           ) : null}
         </div>
