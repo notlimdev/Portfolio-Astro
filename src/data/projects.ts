@@ -3,11 +3,7 @@ export type ProjectLink = {
   href: string;
 };
 
-export type ProjectStatus =
-  | "draft"
-  | "in-progress"
-  | "completed"
-  | "archived";
+export type ProjectStatus = "draft" | "in-progress" | "completed" | "archived";
 
 export type ProjectContext = "personal" | "freelance" | "company" | "academic";
 
@@ -35,54 +31,19 @@ export type ProjectType = {
 export const projectsData: ProjectType[] = [
   {
     id: 1,
-    slug: "portfolio-astro",
-    category: "Portfolio / 3D Web",
-    title: "Portfolio Astro",
-    excerpt:
-      "Portafolio migrado a Astro con React 19 y experiencia visual 3D.",
-    description:
-      "Portafolio personal construido sobre Astro con integración de React 19, Three.js, React Three Fiber y una arquitectura orientada a performance y escalabilidad visual.",
-    year: "2025",
-    role: "Frontend / Creative Developer",
-    context: "personal",
-    technologies: ["Astro", "React 19", "TypeScript", "Three.js", "R3F", "GSAP"],
-    featured: true,
-    featuredOrder: 1,
-    status: "in-progress",
-    repositoryUrl: "https://github.com/notlimdev/Portfolio-Astro",
-    links: [
-      {
-        label: "View Repository",
-        href: "https://github.com/notlimdev/Portfolio-Astro",
-      },
-    ],
-    highlights: [
-      "Migración del portafolio a Astro",
-      "Integración de React 19 y escenas 3D",
-      "Base para una experiencia visual más optimizada",
-    ],
-  },
-  {
-    id: 2,
-    slug: "quiosco-nextjs15",
+    slug: "food-ordering-platform",
     category: "Full Stack / E-commerce",
-    title: "Quiosco de Comida",
+    title: "Food Ordering Platform",
     excerpt:
-      "Sistema de pedidos con Next.js 15, Server Actions y Prisma.",
+      "Sistema full stack para gestión de pedidos, catálogo y flujo operativo con Next.js 15, Server Actions y Prisma.",
     description:
-      "Aplicación full stack para gestionar pedidos de comida construida con Next.js 15, App Router, Server Actions, Prisma ORM y validación con Zod.",
+      "Plataforma web orientada a la operación de un quiosco de comida, con gestión de productos, pedidos y acciones del servidor sobre una arquitectura moderna basada en App Router.",
     year: "2024",
     role: "Full Stack Developer",
     context: "personal",
-    technologies: [
-      "Next.js 15",
-      "TypeScript",
-      "Prisma",
-      "Zod",
-      "TailwindCSS",
-    ],
+    technologies: ["Next.js 15", "TypeScript", "Prisma", "Zod", "TailwindCSS"],
     featured: true,
-    featuredOrder: 2,
+    featuredOrder: 1,
     status: "completed",
     liveUrl: "https://app-quiosco-nextjs15.vercel.app",
     repositoryUrl: "https://github.com/notlimdev/app-quiosco-nextjs15",
@@ -97,26 +58,26 @@ export const projectsData: ProjectType[] = [
       },
     ],
     highlights: [
-      "Uso de Next.js 15 con App Router",
-      "Server Actions para operaciones del servidor",
-      "Prisma ORM y validación con Zod",
+      "Flujo de pedidos con App Router y Server Actions",
+      "Persistencia y modelado de datos con Prisma",
+      "Validación tipada y UX orientada a producto",
     ],
   },
   {
-    id: 3,
-    slug: "shop-store-app",
+    id: 2,
+    slug: "commerce-admin-platform",
     category: "E-commerce / Backend",
-    title: "Shop Store App",
+    title: "Commerce Admin Platform",
     excerpt:
-      "Sistema administrativo para tienda virtual con Laravel 11 y API REST.",
+      "Sistema administrativo para operación de tienda virtual con Laravel 11 y servicios API orientados a escalabilidad.",
     description:
-      "Proyecto orientado a la gestión de una tienda virtual con arquitectura híbrida: administración centralizada y servicios API para escalabilidad.",
+      "Plataforma para administración comercial con enfoque en catálogo, operación interna y crecimiento progresivo hacia una arquitectura híbrida con servicios API.",
     year: "2024",
     role: "Full Stack Developer",
     context: "personal",
     technologies: ["PHP", "Laravel 11", "REST API", "MySQL"],
     featured: true,
-    featuredOrder: 3,
+    featuredOrder: 2,
     status: "completed",
     repositoryUrl: "https://github.com/notlimdev/shop-store-app",
     links: [
@@ -126,20 +87,56 @@ export const projectsData: ProjectType[] = [
       },
     ],
     highlights: [
-      "Arquitectura híbrida para e-commerce",
-      "Laravel 11 para gestión administrativa",
-      "Base API para futuras integraciones",
+      "Panel administrativo orientado a operación comercial",
+      "Laravel 11 como base de dominio y gestión",
+      "Preparado para integraciones API y crecimiento modular",
+    ],
+  },
+  {
+    id: 3,
+    slug: "patient-management-system",
+    category: "Frontend / Healthcare",
+    title: "Patient Management System",
+    excerpt:
+      "Aplicación web para administrar registros clínicos y flujos de atención con React, TypeScript y estado moderno.",
+    description:
+      "Sistema frontend centrado en la gestión de pacientes, formularios y organización de información clínica con una UX clara y stack moderno de estado y validación.",
+    year: "2024",
+    role: "Frontend Developer",
+    context: "personal",
+    technologies: [
+      "React",
+      "TypeScript",
+      "Zustand",
+      "Hook Form",
+      "Toastify",
+      "TailwindCSS",
+    ],
+    featured: true,
+    featuredOrder: 3,
+    status: "completed",
+    repositoryUrl: "https://github.com/notlimdev/app-gestor-pacientes",
+    links: [
+      {
+        label: "View Repository",
+        href: "https://github.com/notlimdev/app-gestor-pacientes",
+      },
+    ],
+    highlights: [
+      "Gestión clara de registros y formularios",
+      "Estado global y experiencia de uso cuidada",
+      "Stack frontend sólido aplicado a un dominio real",
     ],
   },
   {
     id: 4,
-    slug: "python-image-processing",
+    slug: "image-processing-platform",
     category: "Full Stack / Computer Vision",
-    title: "Python Image Processing",
+    title: "Image Processing Platform",
     excerpt:
-      "Procesamiento y análisis de imágenes con Python, Flask, OpenCV y React.",
+      "Sistema full stack para análisis y procesamiento visual con Python, Flask, OpenCV y frontend en React.",
     description:
-      "Sistema full stack para procesamiento de imágenes con backend en Flask, uso de OpenCV y NumPy para análisis visual, y frontend en React con TypeScript.",
+      "Proyecto técnico orientado al procesamiento de imágenes y análisis visual, integrando backend científico con una interfaz web para interacción y exploración de resultados.",
     year: "2024",
     role: "Full Stack Developer",
     context: "personal",
@@ -156,44 +153,38 @@ export const projectsData: ProjectType[] = [
       },
     ],
     highlights: [
-      "Uso de OpenCV para procesamiento visual",
-      "Backend en Flask con integración full stack",
-      "Proyecto técnico distinto al frontend tradicional",
+      "Procesamiento visual con OpenCV y NumPy",
+      "Backend técnico conectado a interfaz React",
+      "Proyecto diferenciador fuera del frontend tradicional",
     ],
   },
   {
     id: 5,
-    slug: "rest-api-express",
-    category: "Backend / API",
-    title: "REST API Express",
+    slug: "folklore-wardrobe-app",
+    category: "Mobile / Catalog Management",
+    title: "Folklore Wardrobe Catalog",
     excerpt:
-      "API backend con Node.js, Express, TypeScript y PostgreSQL.",
+      "Aplicación móvil para catalogar y gestionar vestimentas folclóricas con una experiencia enfocada en organización y búsqueda.",
     description:
-      "Implementación de una REST API con Express y Sequelize orientada a una arquitectura backend mantenible, tipada y conectada a PostgreSQL.",
-    year: "2024",
-    role: "Backend Developer",
-    context: "personal",
-    technologies: [
-      "Node.js",
-      "Express.js",
-      "TypeScript",
-      "Sequelize",
-      "PostgreSQL",
-    ],
+      "Aplicación nativa desarrollada con Flutter para administrar colecciones de vestimentas folclóricas, facilitando la clasificación, consulta y mantenimiento de registros desde una interfaz móvil.",
+    year: "2023",
+    role: "Mobile Developer",
+    context: "academic",
+    technologies: ["Flutter", "Dart", "Firebase", "Percent Indicator"],
     featured: true,
     featuredOrder: 5,
     status: "completed",
-    repositoryUrl: "https://github.com/notlimdev/app-RestAPI-Express",
+    repositoryUrl: "https://github.com/notlimdev/App_Vestimenta_Flutter",
     links: [
       {
         label: "View Repository",
-        href: "https://github.com/notlimdev/app-RestAPI-Express",
+        href: "https://github.com/notlimdev/App_Vestimenta_Flutter",
       },
     ],
     highlights: [
-      "API REST construida con TypeScript",
-      "Persistencia con Sequelize y PostgreSQL",
-      "Buen respaldo para mostrar perfil full stack",
+      "Catálogo móvil orientado a colecciones culturales",
+      "Interfaz enfocada en consulta y organización",
+      "Implementación nativa con Flutter y Dart",
     ],
   },
 ];
