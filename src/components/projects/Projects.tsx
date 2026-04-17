@@ -3,67 +3,101 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Card from "./elementsProjects/Card";
 import { useDivRefsStore } from "@store/store-sections";
+import { useTimelineProjectStore } from "@store/store-timeline-projects";
+import { projectsData } from "@data/projects";
 
 export default function Projects() {
-  const horizotalPanelsRef = useRef<HTMLDivElement>(null);
-  const container = useRef<HTMLDivElement>(null);
-  const container_root = useRef<HTMLDivElement>(null);
-  const setRefDivs = useDivRefsStore((state) => state.setDivRef);
+  const panelsTrackRef = useRef<HTMLDivElement>(null);
+  const projectsContainerRef = useRef<HTMLDivElement>(null);
+  const projectsSectionRef = useRef<HTMLDivElement>(null);
+  const setDivRef = useDivRefsStore((state) => state.setDivRef);
+  const setProjectsTimeline = useTimelineProjectStore(
+    (state) => state.setTimeline,
+  );
 
   useGSAP(
     () => {
-      const sections = gsap.utils.toArray(".panel");
-      if (sections.length === 0 || !container_root.current) return;
-      const newtimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: container_root.current,
-          start: `top top`,
-          scrub: true,
-          pin: true,
-          anticipatePin: 1,
-          id: "horizontalsctoll",
-          refreshPriority: 1,
-          invalidateOnRefresh: true,
-        },
+      if (
+        !projectsSectionRef.current ||
+        !projectsContainerRef.current ||
+        !panelsTrackRef.current
+      ) {
+        return;
+      }
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 1024px)", () => {
+        const scrollDistance =
+          panelsTrackRef.current!.scrollWidth -
+          projectsContainerRef.current!.offsetWidth;
+
+        if (scrollDistance <= 0) return;
+
+        const projectsTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: projectsSectionRef.current,
+            start: "top top",
+            end: () => `+=${scrollDistance}`,
+            scrub: true,
+            pin: true,
+            anticipatePin: 1,
+            id: "projects-horizontal-scroll",
+            refreshPriority: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        projectsTimeline.to(panelsTrackRef.current, {
+          x: -scrollDistance,
+          ease: "none",
+          force3D: true,
+        });
+
+        setProjectsTimeline(projectsTimeline);
       });
-      newtimeline.to(sections, {
-        xPercent: -(100 * (sections.length - 1)),
-        ease: "none",
-        force3D: true,
+
+      mm.add("(max-width: 1023px)", () => {
+        gsap.set(panelsTrackRef.current, {
+          clearProps: "transform",
+        });
       });
+
+      return () => {
+        mm.revert();
+      };
     },
-    { dependencies: [horizotalPanelsRef], scope: container },
+    { dependencies: [setProjectsTimeline], scope: projectsContainerRef },
   );
 
   useEffect(() => {
-    if (container_root.current) {
-      setRefDivs("Projects", container_root);
+    if (projectsSectionRef.current) {
+      setDivRef("Projects", projectsSectionRef);
     }
-  }, [container_root, setRefDivs]);
+  }, [setDivRef]);
+
   return (
     <div
-      className="flex flex-col justify-around items-center w-full min-h-screen hidden_overflow-project"
-      ref={container_root}
+      className="flex w-full min-h-screen flex-col items-center justify-start gap-8 overflow-hidden px-4 py-12 sm:px-6 lg:gap-10 lg:px-10 lg:py-16"
+      ref={projectsSectionRef}
     >
-      <div className="w-full flex flex-row justify-center items-center">
-        <h1
-          className="w-[90%] text-white text-4xl 
-          font-bold text-center border-b-2 border-t-2 border-dashed"
-        >
+      <div className="flex w-full items-center justify-center">
+        <h1 className="w-full max-w-350 border-y-2 border-dashed border-white/20 py-4 text-center text-3xl font-bold text-white sm:text-4xl">
           Projects
         </h1>
       </div>
       <div
         id="Projects"
-        className="h-[70%] w-[90%] flex flex-col justify-center"
-        ref={container}
+        className="flex w-full max-w-350 flex-col justify-center"
+        ref={projectsContainerRef}
       >
-        <section ref={horizotalPanelsRef} className=" flex gap-2">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+        <section
+          ref={panelsTrackRef}
+          className="flex flex-col gap-5 lg:flex-row lg:gap-6"
+        >
+          {projectsData.map((project) => (
+            <Card key={project.id} project={project} />
+          ))}
         </section>
       </div>
     </div>
