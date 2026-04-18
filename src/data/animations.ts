@@ -4,6 +4,7 @@ import { OrbitControls as ThreeOrbitControls } from "three-stdlib";
 type AnimationData = {
   objectToAnimate: GSAPTweenTarget;
   properties: GSAPTweenVars;
+  position?: string | number; // ✅ SOPORTE PARA POSITION PARAMETER DE GSAP
 };
 
 type TimelineProps = {
@@ -27,7 +28,7 @@ function sceneIntro(
         x: Math.PI * -0.001,
         y: 0,
         z: 0,
-        duration: 1,
+        duration: 1.5,
         ease: "power3.inOut",
       },
     },
@@ -35,10 +36,11 @@ function sceneIntro(
       objectToAnimate: camera,
       properties: {
         zoom: 4.3,
-        duration: 1,
+        duration: 1.5,
         ease: "power3.inOut",
         onUpdate: () => camera.updateProjectionMatrix(),
       },
+      position: "<", // Se sincroniza con la rotación inicial
     },
   ];
 }
@@ -48,17 +50,23 @@ function sceneLabel(
   extraAnimations: AnimationData[] = [],
 ): AnimationData[] {
   return [
-    // Aparecer
+    // 1. Aparecer suavemente
     {
       objectToAnimate: labelRef,
-      properties: { opacity: 1, duration: 1, y: 100, ease: "power4.in" },
+      properties: { opacity: 1, duration: 1, y: 30, ease: "power3.out" },
     },
-    // Desaparecer
+    // 2. Animaciones extra (cámara, modelo) SINCRONIZADAS con la aparición
+    ...extraAnimations.map((anim) => ({ ...anim, position: "<" })),
+    // 3. Dwell time: Tiempo de lectura mientras el usuario scrollea
+    {
+      objectToAnimate: labelRef,
+      properties: { opacity: 1, duration: 2 },
+    },
+    // 4. Desaparecer suavemente hacia arriba
     {
       objectToAnimate: labelRef,
       properties: { opacity: 0, duration: 1, y: 0, ease: "power3.in" },
     },
-    ...extraAnimations,
   ];
 }
 
@@ -70,7 +78,7 @@ function sceneCamera(
     objectToAnimate: camera,
     properties: {
       zoom,
-      duration: 1,
+      duration: 1.5,
       ease: "power3.inOut",
       onUpdate: () => camera.updateProjectionMatrix(),
     },
@@ -85,7 +93,7 @@ function sceneModelRotation(
 ): AnimationData {
   return {
     objectToAnimate: modelRef.rotation as THREE.Euler,
-    properties: { x, y, z, duration: 1, ease: "power3.inOut" },
+    properties: { x, y, z, duration: 1.5, ease: "power3.inOut" },
   };
 }
 
@@ -109,8 +117,8 @@ export function ArrayAnimations({
           x: 0.1,
           y: 0.6,
           z: 0,
-          duration: 1,
-          ease: "power2.in",
+          duration: 1.5,
+          ease: "power2.inOut",
           onUpdate: () => {
             controlsRef?.target.copy(animatedTarget);
             controlsRef?.update();
@@ -127,7 +135,8 @@ export function ArrayAnimations({
     sceneModelRotation(modelRef, 0, Math.PI * 0.55, 0),
     {
       objectToAnimate: modelRef.position as THREE.Vector3,
-      properties: { x: 0, y: 0.3, z: 0, duration: 1, ease: "power3.inOut" },
+      properties: { x: 0, y: 0.3, z: 0, duration: 1.5, ease: "power3.inOut" },
+      position: "<",
     },
     ...sceneLabel(labelsrefs["label_03"].current!, [
       sceneCamera(camera, 4),
@@ -140,7 +149,7 @@ export function ArrayAnimations({
       sceneModelRotation(modelRef, 0, Math.PI * 0.4, 0),
     ]),
 
-    // — Escena 5: relajación —
+    // — Escena 5: cierre —
     ...sceneLabel(labelsrefs["label_05"].current!, [
       sceneModelRotation(modelRef, 0, Math.PI * 0.4, 0),
       sceneModelRotation(modelRef, Math.PI * 0.3, 0, 0),
@@ -148,7 +157,8 @@ export function ArrayAnimations({
     ]),
   ];
 
-  animations.forEach(({ objectToAnimate, properties }) => {
-    timeline.to(objectToAnimate, properties);
+  // ✅ AQUÍ ESTÁ LA MAGIA: ahora procesamos el "position" parameter de GSAP
+  animations.forEach(({ objectToAnimate, properties, position }) => {
+    timeline.to(objectToAnimate, properties, position);
   });
 }
