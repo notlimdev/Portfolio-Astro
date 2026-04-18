@@ -9,4 +9,5 @@ export const navPages: NavPage[] = [
   { id: 2, name: "Skills", label: "Skills" },
   { id: 3, name: "Experience", label: "Experience" },
   { id: 4, name: "Projects", label: "Projects" },
+  { id: 5, name: "Contact", label: "Contact" },
 ];
