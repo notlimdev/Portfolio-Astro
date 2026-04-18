@@ -5,6 +5,7 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
 import { useModelStore } from "@store/store";
 import type { GLTF } from "three-stdlib";
+import type { ThreeElements } from "@react-three/fiber";
 
 type ActionName = "Armature.003|Armature.003Action.001";
 
@@ -255,13 +256,11 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[];
 };
 
-
-export function ModelGamerRoom(props: React.ComponentProps<'group'>) {
-
+export function ModelGamerRoom(props: ThreeElements["group"]) {
   const groupGamerRoom = React.useRef<THREE.Group>(null);
 
   //refreencia del modelo en un estado global
-  const setModelRef = useModelStore((state) => state.setModelRef)
+  const setModelRef = useModelStore((state) => state.setModelRef);
 
   const { scene, animations } = useGLTF(
     "/model002/modelDraco-transformed-gamer.glb",
@@ -270,13 +269,11 @@ export function ModelGamerRoom(props: React.ComponentProps<'group'>) {
   const { nodes, materials } = useGraph(clone) as unknown as GLTFResult;
   useAnimations(animations, groupGamerRoom);
 
-
-
   useEffect(() => {
     if (groupGamerRoom.current) {
-      setModelRef(groupGamerRoom.current)
+      setModelRef(groupGamerRoom.current);
     }
-  }, [setModelRef, groupGamerRoom])
+  }, [setModelRef, groupGamerRoom]);
 
   return (
     <group ref={groupGamerRoom} {...props} dispose={null}>
