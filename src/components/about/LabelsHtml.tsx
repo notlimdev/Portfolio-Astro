@@ -21,18 +21,20 @@ export default function LabelsHtml({
   return (
     <div
       ref={ref}
-      className="opacity-0 absolute flex flex-col items-center"
+      className="opacity-0 absolute flex flex-col gap-2 p-6 md:p-8
+                 backdrop-blur-md bg-slate-900/60 border border-white/10 rounded-3xl
+                 shadow-2xl shadow-black/50 max-w-[85vw] sm:max-w-sm md:max-w-md 
+                 pointer-events-none"
       style={label.position}
     >
-      <h1
-        className="text-white font-extrabold underline
-                     text-[2rem] sm:text-[5rem] lg:text-[8rem] xl:text-[10rem]"
+      <p
+        className="text-transparent bg-clip-text bg-linear-to-r from-indigo-300 to-cyan-400
+                   font-extrabold text-2xl sm:text-3xl md:text-4xl uppercase tracking-wider"
       >
         {label.title}
-      </h1>
+      </p>
       <p
-        className="text-white font-bold
-                    text-[8px] sm:text-base lg:text-lg xl:text-xl"
+        className="text-slate-200 font-medium text-sm md:text-base leading-relaxed"
       >
         {label.description}
       </p>
