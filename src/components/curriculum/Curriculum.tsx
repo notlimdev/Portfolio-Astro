@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CvHeroPanel } from "./CvHeroPanel";
 import { CvInfoRail } from "./CvInfoRail";
 import { CvStoryDeck } from "./CvStoryDeck";
+import { CvFloatingButton } from "./CvFloatingButton";
 
 export default function Curriculum() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -21,7 +22,9 @@ export default function Curriculum() {
             <CvStoryDeck />
           </div>
         </div>
+        <CvFloatingButton />
       </div>
+
     </div>
   );
 }
