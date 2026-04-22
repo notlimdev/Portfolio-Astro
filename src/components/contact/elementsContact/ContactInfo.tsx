@@ -33,11 +33,11 @@ export default function ContactInfo() {
       {/* Tagline */}
       <div className="flex flex-col gap-2">
         <p className="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-indigo-300/70">
-          Available for work
+          Disponible para trabajar
         </p>
         <p className="max-w-[42ch] text-sm leading-7 text-slate-300/80">
-          ¿Tenés un proyecto en mente o querés charlar sobre tecnología?{" "}
-          <span className="text-white">Escribime sin problema.</span>
+          ¿Tienes un proyecto en mente o quieres charlar sobre tecnología?{" "}
+          <span className="text-white">Escríbeme sin problema.</span>
         </p>
       </div>
 
