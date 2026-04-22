@@ -84,7 +84,7 @@ export default function ContactForm() {
       {/* Intereses — chips tipo radio */}
       <fieldset className="flex flex-col gap-3">
         <legend className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-200/50">
-          I&apos;m interested in
+          Me interesa
         </legend>
         <div className="flex flex-wrap gap-2">
           {personalInfo.interests.map((item) => (
@@ -112,7 +112,7 @@ export default function ContactForm() {
             htmlFor="contact-name"
             className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-200/50"
           >
-            Name
+            Nombre
           </label>
           <input
             id="contact-name"
@@ -130,7 +130,7 @@ export default function ContactForm() {
             htmlFor="contact-email"
             className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-200/50"
           >
-            Email
+            Correo
           </label>
           <input
             id="contact-email"
@@ -151,7 +151,7 @@ export default function ContactForm() {
           htmlFor="contact-message"
           className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-200/50"
         >
-          Message
+          Mensaje
         </label>
         <textarea
           id="contact-message"
@@ -160,7 +160,7 @@ export default function ContactForm() {
           rows={4}
           value={formData.message}
           onChange={handleChange}
-          placeholder="Contame sobre tu proyecto o en qué te puedo ayudar..."
+          placeholder="Cuéntame sobre tu proyecto o en qué te puedo ayudar..."
           className="resize-none rounded-lg border border-slate-200/10 bg-slate-800/50 px-4 py-2.5 text-sm text-white placeholder-slate-500 backdrop-blur-sm transition-colors focus:border-indigo-300/40 focus:outline-none focus:ring-1 focus:ring-indigo-300/20"
         />
       </div>
@@ -168,7 +168,7 @@ export default function ContactForm() {
       {/* Error */}
       {status === "error" && (
         <p className="rounded-lg border border-red-400/20 bg-red-400/5 px-4 py-2.5 text-xs text-red-300">
-          Algo salió mal. Intentá de nuevo o escribime directamente a{" "}
+          Algo salió mal. Intenta de nuevo o escríbeme directamente a{" "}
           <a
             href={`mailto:${personalInfo.email}`}
             className="underline underline-offset-2"
@@ -188,10 +188,10 @@ export default function ContactForm() {
         {status === "loading" ? (
           <>
             <span className="size-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
-            Sending...
+            Enviando...
           </>
         ) : (
-          "Send Message →"
+          "Enviar Mensaje →"
         )}
       </button>
     </form>
