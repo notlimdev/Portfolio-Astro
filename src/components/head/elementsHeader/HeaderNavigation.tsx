@@ -43,9 +43,10 @@ export default function HeaderNavigation() {
         <Bars4Icon />
       </button>
 
-      {/* Botón Contact — oculto en mobile */}
+      {/* Botón Mi Blog — oculto en mobile */}
       <CTAButton
-        label="Contact"
+        label="Mi Blog"
+        href="/blog"
         variant="gradient-border"
         className="max-sm:hidden"
       />
