@@ -31,7 +31,7 @@ export default function Contact() {
         {/* Heading — mismo estilo que Projects y About */}
         <div className="flex w-full items-center justify-center">
           <h2 className="w-full border-y-2 border-dashed border-white/20 py-4 text-center text-3xl font-bold text-white sm:text-4xl">
-            Contact
+            Contacto
           </h2>
         </div>
 
@@ -42,7 +42,7 @@ export default function Contact() {
             {/* Título de la sección */}
             <div className="flex flex-col gap-1">
               <h3 className="text-2xl font-bold text-white sm:text-3xl">
-                Let&apos;s get in touch
+                Ponte en contacto
               </h3>
               <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-indigo-300/60">
                 notlimdev · Milton Vergara
