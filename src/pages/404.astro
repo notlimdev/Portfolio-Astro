@@ -1,0 +1,53 @@
+---
+import '../styles/global.css';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="En Construcción | Milton Vergara">
+  <main class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-slate-900">
+    {/* Fondo con el GIF en pantalla completa */}
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="/404-page.gif" 
+        alt="Fondo animado de construcción" 
+        class="w-full h-full object-cover opacity-80"
+      />
+      {/* Overlay oscuro sutil para que el texto resalte, pero permitiendo ver el GIF claramente */}
+      <div class="absolute inset-0 bg-slate-900/40"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-slate-900/60"></div>
+    </div>
+
+    {/* Contenido principal por encima del fondo */}
+    <div class="relative z-10 max-w-5xl px-6 text-center flex flex-col items-center">
+      
+      <div class="inline-block mb-6 px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-cyan-300 font-bold tracking-[0.2em] uppercase text-sm shadow-xl">
+        Trabajo en Progreso
+      </div>
+
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 drop-shadow-2xl leading-tight">
+        Preparando <br class="md:hidden" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400">Nuevos Espacios</span>
+      </h1>
+      
+      <p class="text-xl md:text-3xl text-slate-300 mb-14 font-light max-w-3xl drop-shadow-lg leading-relaxed">
+        El blog y otras secciones interactivas se encuentran actualmente en Mantenimiento. 
+        Vuelve a la sección más adelante.
+      </p>
+
+      {/* Botón de regreso con Glassmorphism */}
+      <a 
+        href="/" 
+        class="group relative px-10 py-5 bg-white/10 backdrop-blur-lg border border-white/20 rounded-full text-white font-bold text-lg hover:scale-105 hover:bg-white/20 hover:shadow-2xl hover:shadow-cyan-500/40 transition-all duration-500 inline-flex items-center gap-4 overflow-hidden"
+      >
+        {/* Resplandor interno en hover */}
+        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-cyan-500/40 to-indigo-500/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 relative z-10 group-hover:-translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        <span class="relative z-10 transition-colors tracking-wide uppercase text-sm md:text-base">Explorar Portafolio</span>
+      </a>
+
+    </div>
+  </main>
+</Layout>
